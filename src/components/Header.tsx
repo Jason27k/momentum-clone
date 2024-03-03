@@ -6,7 +6,7 @@ import { buttonVariants } from "./ui/button";
 
 const Header = () => {
   return (
-    <div className="w-full flex h-24 items-center justify-center absolute">
+    <div className="z-50 w-full flex h-24 items-center justify-center absolute">
       <div className="w-full flex md:mx-[10vw]">
         <div className="flex-1 flex items-center">
           <Link href="/">
