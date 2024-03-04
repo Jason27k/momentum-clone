@@ -11,10 +11,15 @@ const variants = {
 
 const About = () => {
   const ref = useRef<HTMLImageElement>(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, {
+    once: true,
+  });
 
   return (
-    <div className="pt-[10vh] bg-[#1b1b1b] flex flex-col items-center justify-center">
+    <div
+      className="pt-[10vh] bg-[#1b1b1b] flex flex-col items-center justify-center"
+      id="about"
+    >
       <motion.p
         variants={variants}
         initial="initial"

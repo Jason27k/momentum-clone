@@ -12,7 +12,10 @@ const variants = {
 
 const MainHero = () => {
   return (
-    <div className="relative bg-gradient-to-br from-[#dd1173] to-[#350e47] md:h-screen pt-[10vh] overflow-hidden">
+    <div
+      className="relative bg-gradient-to-br from-[#dd1173] to-[#350e47] md:h-screen pt-[15vh] overflow-hidden"
+      id="main"
+    >
       <motion.div
         variants={variants}
         initial="initial"
@@ -27,7 +30,7 @@ const MainHero = () => {
           <p className="md:text-2xl text-wrap mb-4 text-center md:text-left max-w-[60%] lg:max-w-[100%]">
             Launch your product &mdash; and savor the momentum.
           </p>
-          <Button className="w-[169px] h-[66px] bg-[#fc0a7e] text-[16px] font-semibold">
+          <Button className="w-[169px] h-[66px] bg-[#fc0a7e] text-[16px] font-semibold hover:bg-white hover:text-[#6b6b6b]">
             Get the App
           </Button>
         </div>
@@ -36,7 +39,7 @@ const MainHero = () => {
           alt="Hero Image"
           width={600}
           height={600}
-          className="md:absolute w-[70%] min-w-[350px] max-w-[600px] z-1 xl:max-w-[900px]"
+          className="md:absolute w-[70%] min-w-[350px] max-w-[600px] z-1 2xl:max-w-[900px]"
         />
       </motion.div>
       <MoveDown className="absolute bottom-10 left-1/2" size={50} />

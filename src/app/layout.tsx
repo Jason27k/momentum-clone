@@ -3,7 +3,11 @@ import { Gothic_A1 } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const inter = Gothic_A1({ weight: "400", style: "normal", subsets: ["latin"] });
+const inter = Gothic_A1({
+  weight: ["400", "500", "600", "700", "800"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Richard",
