@@ -1,11 +1,4 @@
-export const links = [
-  "About",
-  "Features",
-  "How to Use",
-  "Login",
-  "Log Out",
-  "Account",
-];
+export const links = ["About", "Features", "How to Use", "Dashboard"];
 
 export const content = [
   {

@@ -14,7 +14,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Button } from "./ui/button";
-
 const Header = () => {
   return (
     <div className="z-50 w-full flex h-24 items-center justify-center absolute scroll-smooth">
@@ -52,11 +51,15 @@ const Header = () => {
           <div className="hidden md:block">
             {links.map((link, index) => (
               <Link
-                href={`#${link.toLowerCase()}`}
+                href={`${
+                  link.toLowerCase() === "dashboard"
+                    ? "/dashboard"
+                    : "#" + link.toLowerCase()
+                }`}
                 key={index}
                 className={buttonVariants({
                   className:
-                    "hover:underline underline-offset-[20px] decoration-[5px] decoration-[#fc0a7e] text-lg",
+                    "hover:underline underline-offset-[20px] decoration-[5px] decoration-[#fc0a7e]",
                   variant: "ghost",
                 })}
               >

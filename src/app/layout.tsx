@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Gothic_A1 } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const inter = Gothic_A1({
   weight: ["400", "500", "600", "700", "800"],
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("text-white", inter.className)}>{children}</body>
+      <body className={cn("text-white", inter.className)}>
+        <UserProvider>{children}</UserProvider>
+      </body>
     </html>
   );
 }
