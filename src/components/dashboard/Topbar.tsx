@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface TopbarProps {
   email: string;
@@ -26,15 +31,22 @@ const Topbar = ({ email, image }: TopbarProps) => {
       </div>
       <div className="flex items-center">
         <span className="text-sm font-medium mr-2">{email}</span>
-        <Button className="rounded-full" size="icon" variant="ghost">
-          <Image
-            alt="Avatar"
-            className="rounded-full"
-            height="32"
-            src={image}
-            width="32"
-          />
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Image
+              alt="Avatar"
+              className="rounded-full"
+              height="32"
+              src={image}
+              width="32"
+            />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <a href="/api/auth/logout">Logout</a>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

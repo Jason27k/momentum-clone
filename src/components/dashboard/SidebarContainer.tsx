@@ -4,15 +4,10 @@ import { Package2Icon } from "lucide-react";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import { Button } from "../ui/button";
-import { getUserInfoWithoutSession } from "@/actions/subscription";
+import { getSubscription } from "@/actions/subscription";
 
 const SidebarContainer = async () => {
-  const userData = await getUserInfoWithoutSession();
-  if (userData instanceof Error) {
-    console.log("SidebarContainer Error: ", userData.message);
-    return <div>Loading...</div>;
-  }
-  const subscription = userData.subscription;
+  const subscription = await getSubscription();
   return (
     <div className="flex h-full max-h-screen flex-col gap-2">
       <div className="flex h-[60px] items-center border-b px-6">

@@ -2,12 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { patchSub } from "@/actions/subscription";
-import { getUserInfoWithoutSession } from "@/actions/subscription";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useEffect, useState } from "react";
 import type { Claims } from "@auth0/nextjs-auth0";
+import { getSubscription } from "@/actions/subscription";
 
-export default withPageAuthRequired(function Subscription() {
+const Subscription = () => {
   const [user, setUser] = useState<{
     user: Claims;
     userId: number;
@@ -16,7 +15,7 @@ export default withPageAuthRequired(function Subscription() {
   const [isClicked, setIsClicked] = useState(false);
   useEffect(() => {
     const func = async () => {
-      const userInfo = await getUserInfoWithoutSession();
+      const userInfo = getSubscription();
       if (userInfo instanceof Error) {
         console.log("Subscription Error: ", userInfo.message);
         return;
@@ -25,10 +24,10 @@ export default withPageAuthRequired(function Subscription() {
     };
     func();
   }, [isClicked]);
-  const onClick = () => {
+  const onClick = async () => {
     console.log("clicked");
     setIsClicked((prev) => !prev);
-    patchSub();
+    await patchSub();
   };
   return (
     <main className="flex-1 p-6">
@@ -80,4 +79,6 @@ export default withPageAuthRequired(function Subscription() {
       </div>
     </main>
   );
-});
+};
+
+export default Subscription;

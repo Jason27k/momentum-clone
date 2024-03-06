@@ -1,17 +1,18 @@
+"use server";
+
 import type { UserProfile } from "@auth0/nextjs-auth0/client";
 import { db } from "@/lib/db";
 import { users } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 import { getSession } from "@auth0/nextjs-auth0";
-import type { Claims } from "@auth0/nextjs-auth0";
+import { cookies } from "next/headers";
 
-let USER_ID: number | null = null;
-let SESSION_INFO: Claims | null = null;
-
-export const saveUserInfo = async (user: UserProfile) => {
-  if (USER_ID) {
-    return USER_ID;
+export async function saveUserInfo(user: UserProfile) {
+  const cookieStore = cookies();
+  if (cookieStore.has("userId")) {
+    return JSON.parse(cookieStore.get("userId")?.value as string);
   }
+  let USER_ID;
   const result = await db
     .select({ email: users.email, id: users.id })
     .from(users)
@@ -30,17 +31,19 @@ export const saveUserInfo = async (user: UserProfile) => {
   } else {
     USER_ID = result[0].id;
   }
+  cookieStore.set("userId", JSON.stringify(USER_ID));
   return USER_ID;
-};
+}
 
-export const getUserFromSession = async () => {
-  if (SESSION_INFO) {
-    return SESSION_INFO;
+export async function getUserFromSession() {
+  const cookieStore = cookies();
+  if (cookieStore.has("user")) {
+    return JSON.parse(cookieStore.get("user")?.value as string);
   }
   const session = await getSession();
   if (!session) {
     return new Error("No session found");
   }
-  SESSION_INFO = session.user;
+  cookieStore.set("user", JSON.stringify(session.user));
   return session.user;
-};
+}
