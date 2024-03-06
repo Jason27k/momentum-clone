@@ -1,4 +1,3 @@
-import { createRoot } from "react-dom/client";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ReactNode } from "react";
 
@@ -14,6 +13,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       authorizationParams={{
         redirect_uri: process.env.AUTH0_BASE_URL,
       }}
+      onRedirectCallback={() => {}}
     >
       {children}
     </Auth0Provider>

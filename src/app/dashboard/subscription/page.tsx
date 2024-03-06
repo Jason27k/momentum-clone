@@ -1,11 +1,14 @@
 "use client";
 
-import { useUserStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
+import { patchSub } from "@/actions/subscription";
+
+const onClick = () => {
+  console.log("clicked");
+  patchSub();
+};
 
 const Subscription = () => {
-  const setPage = useUserStore((state) => state.setPage);
-  setPage("subscription");
   return (
     <main className="flex-1 p-6">
       <div
@@ -27,7 +30,9 @@ const Subscription = () => {
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Pro Plan ($19/month)
             </div>
-            <Button className="w-full">Change Plan</Button>
+            <Button className="w-full" onClick={onClick}>
+              Change Plan
+            </Button>
           </div>
         </div>
       </div>
