@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { patchSub } from "@/actions/subscription";
+import { getUserInfoWithoutSession } from "@/actions/subscription";
 
 const onClick = () => {
   console.log("clicked");
@@ -9,6 +10,11 @@ const onClick = () => {
 };
 
 const Subscription = () => {
+  const userInfo = getUserInfoWithoutSession();
+  if (userInfo instanceof Error) {
+    return <div>Error</div>;
+  }
+
   return (
     <main className="flex-1 p-6">
       <div
