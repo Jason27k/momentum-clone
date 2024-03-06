@@ -12,6 +12,7 @@ type HeaderProps = {
 const DashboardHeader = async ({ children }: HeaderProps) => {
   const user = await getUserFromSession();
   if (user instanceof Error) {
+    console.log("DASHBOARD");
     return <div>Loading...</div>;
   }
   return (

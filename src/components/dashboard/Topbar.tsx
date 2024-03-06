@@ -20,7 +20,9 @@ const Topbar = ({ email, image }: TopbarProps) => {
         Richard
       </Link>
       <div className="flex-1 text-sm font-medium">
-        {page === undefined ? "Account Information" : page}
+        {page === undefined
+          ? "Account Information"
+          : page.charAt(0).toUpperCase() + page.slice(1)}
       </div>
       <div className="flex items-center">
         <span className="text-sm font-medium mr-2">{email}</span>

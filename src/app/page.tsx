@@ -7,7 +7,6 @@ import MainHero from "@/components/MainHero";
 import Stats from "@/components/Stats";
 import { content, secondaryContent } from "@/lib/constants";
 import QuoteCarousel from "@/components/QuoteCarousel";
-import Image from "next/image";
 import ImageContainer from "@/components/ImageContainer";
 import Footer from "@/components/Footer";
 

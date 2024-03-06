@@ -1,7 +1,9 @@
 "use server";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const Subscription = () => {
-  return <div className=""></div>;
-};
-
-export default Subscription;
+export default withPageAuthRequired(
+  async function Subscription() {
+    return <div className="">Settings</div>;
+  },
+  { returnTo: "/dashboard/settings" }
+);

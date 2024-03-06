@@ -3,10 +3,17 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 import { getSession } from "@auth0/nextjs-auth0";
+import type { Claims } from "@auth0/nextjs-auth0";
+
+let USER_ID: number | null = null;
+let SESSION_INFO: Claims | null = null;
 
 export const saveUserInfo = async (user: UserProfile) => {
+  if (USER_ID) {
+    return USER_ID;
+  }
   const result = await db
-    .select({ email: users.email })
+    .select({ email: users.email, id: users.id })
     .from(users)
     .where(eq(users.email, user.email!));
   if (result.length === 0) {
@@ -19,16 +26,21 @@ export const saveUserInfo = async (user: UserProfile) => {
         picture: user.picture!,
       })
       .returning({ userId: users.id });
-    return userId[0].userId;
+    USER_ID = userId[0].userId;
   } else {
-    return "User already exists";
+    USER_ID = result[0].id;
   }
+  return USER_ID;
 };
 
 export const getUserFromSession = async () => {
+  if (SESSION_INFO) {
+    return SESSION_INFO;
+  }
   const session = await getSession();
   if (!session) {
     return new Error("No session found");
   }
+  SESSION_INFO = session.user;
   return session.user;
 };
