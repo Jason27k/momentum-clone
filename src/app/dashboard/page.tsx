@@ -5,11 +5,12 @@ import Image from "next/image";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import AccountSubscription from "@/components/dashboard/AccountSubscription";
 import { getUserFromSession } from "@/actions/user";
+import { redirect } from "next/navigation";
 
 const AccountInfo = async () => {
   const user = await getUserFromSession();
   if (!user) {
-    return <div>Loading...</div>;
+    redirect("/api/cookies");
   }
   return (
     <div className="h-full flex flex-col bg-gray-100 p-4 rounded-md">

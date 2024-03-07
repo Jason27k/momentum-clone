@@ -3,11 +3,12 @@
 import { Package2Icon } from "lucide-react";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
-import { Button } from "../ui/button";
 import { getSubscription } from "@/actions/subscription";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "../ui/button";
 
 const SidebarContainer = async () => {
-  const subscription = await getSubscription();
+  const subscription = getSubscription();
   return (
     <div className="flex h-full max-h-screen flex-col gap-2">
       <div className="flex h-[60px] items-center border-b px-6">
@@ -19,7 +20,17 @@ const SidebarContainer = async () => {
       <Sidebar />
       <div className="flex h-[60px] items-center border-t px-6">
         {subscription === "Free" && (
-          <Button className="mx-auto shrink-0">Upgrade to Pro</Button>
+          <Link
+            href="/dashboard/subscription"
+            className={cn(
+              buttonVariants({
+                className: "",
+              }),
+              "mx-auto shrink-0"
+            )}
+          >
+            Upgrade to Pro
+          </Link>
         )}
       </div>
     </div>

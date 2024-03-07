@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
 import ImageContainer from "./ImageContainer";
 import FooterLinks from "./FooterLinks";
+import { sendEmail } from "@/actions/emailClient";
 
 const emailSchema = z.object({
   email: z
@@ -19,8 +20,9 @@ const emailSchema = z.object({
     .max(50),
 });
 
-const onSubmit = (data: z.infer<typeof emailSchema>) => {
-  console.log(data);
+const onSubmit = async (data: z.infer<typeof emailSchema>) => {
+  const subject = "Thank you for subscribing!";
+  await sendEmail(data.email, subject);
 };
 
 const Footer = () => {
@@ -81,5 +83,4 @@ const Footer = () => {
     </div>
   );
 };
-
 export default Footer;

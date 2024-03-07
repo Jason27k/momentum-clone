@@ -1,24 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { getSubscription } from "@/actions/subscription";
 
 const AccountSubscription = () => {
-  const [subscription, setSubscription] = useState<"Free" | "Premium">("Free");
+  const [subscription, setSubscription] = useState<string>("Free");
 
   useEffect(() => {
     const func = async () => {
-      const res = Cookies.get("subscription");
-      if (!res) {
-        console.log("No subscription in cookie");
-        return;
-      }
-      console.log("subscription in cookie", res);
-      // const subscription = JSON.parse(
-      //   cookieStore.get("subscription")?.value as string
-      // );
-
-      // setSubscription(subscription.subscription);
+      const subscription = getSubscription();
+      setSubscription(subscription);
     };
     func();
   }, []);

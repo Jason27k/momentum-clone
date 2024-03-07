@@ -1,3 +1,5 @@
+"use client";
+
 import About from "@/components/About";
 import ContentWrapper from "@/components/ContentWrapper";
 import Facts from "@/components/Facts";
@@ -9,8 +11,20 @@ import { content, secondaryContent } from "@/lib/constants";
 import QuoteCarousel from "@/components/QuoteCarousel";
 import ImageContainer from "@/components/ImageContainer";
 import Footer from "@/components/Footer";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Cookies from "js-cookie";
 
 export default function Home() {
+  const { user, error, isLoading } = useUser();
+  if (!user && Cookies.get("user")) {
+    Cookies.remove("user");
+    if (Cookies.get("userId")) {
+      Cookies.remove("userId");
+    }
+    if (Cookies.get("subscription")) {
+      Cookies.remove("subscription");
+    }
+  }
   return (
     <div className="h-screen">
       <Header />

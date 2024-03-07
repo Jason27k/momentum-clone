@@ -6,6 +6,8 @@ import { users } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 import { getSession } from "@auth0/nextjs-auth0";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import Head from "next/head";
 
 export async function saveUserInfo(user: UserProfile) {
   const cookieStore = cookies();
@@ -42,8 +44,7 @@ export async function getUserFromSession() {
   }
   const session = await getSession();
   if (!session) {
-    return new Error("No session found");
+    redirect("/api/auth/login");
   }
-  cookieStore.set("user", JSON.stringify(session.user));
   return session.user;
 }

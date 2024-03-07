@@ -4,19 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import { links } from "@/lib/constants";
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const Header = () => {
+  let path = "/dashboard";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuClick = () => {
     console.log("Menu Clicked");
@@ -26,7 +25,7 @@ const Header = () => {
     <div className="z-50 w-full flex h-24 items-center justify-center absolute scroll-smooth">
       <div className="w-full flex md:mx-[10vw]">
         <div className="flex-1 flex items-center">
-          <Link href="/">
+          <Link href="/api/cookies">
             <Image
               src="/logo/logo.png"
               alt="Logo Image"
@@ -57,7 +56,7 @@ const Header = () => {
                     <Link
                       href={`${
                         link.toLowerCase() === "dashboard"
-                          ? "/dashboard"
+                          ? path
                           : "/#" + link.toLowerCase()
                       }`}
                     >
@@ -73,7 +72,7 @@ const Header = () => {
               <Link
                 href={`${
                   link.toLowerCase() === "dashboard"
-                    ? "/dashboard"
+                    ? path
                     : "#" + link.toLowerCase()
                 }`}
                 key={link}

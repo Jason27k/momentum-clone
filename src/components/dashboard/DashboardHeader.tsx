@@ -3,9 +3,9 @@
 import Topbar from "@/components/dashboard/Topbar";
 import SidebarContainer from "@/components/dashboard/SidebarContainer";
 import { type ReactNode } from "react";
-import { saveUserInfo } from "@/actions/user";
-import { createSubscription } from "@/actions/subscription";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { getSession } from "@auth0/nextjs-auth0";
 
 type HeaderProps = {
   children: ReactNode;
@@ -14,22 +14,18 @@ type HeaderProps = {
 const DashboardHeader = async ({ children }: HeaderProps) => {
   const cookieStore = cookies();
   if (!cookieStore.has("user")) {
-    console.log("No user in cookie");
-    return <div>Loading...</div>;
+    redirect("/api/cookies");
   }
-
+  const session = await getSession();
   const user = JSON.parse(cookieStore.get("user")?.value as string);
-
-  let userId = null;
-  if (!cookieStore.has("userId")) {
-    userId = await saveUserInfo(user);
-  } else {
-    userId = JSON.parse(cookieStore.get("userId")?.value as string);
+  if (!session) {
+    redirect("/api/auth/login");
   }
 
-  if (!cookieStore.has("subscription")) {
-    await createSubscription(userId);
+  if (session.user.email !== user.email) {
+    redirect("/api/validateCookies");
   }
+
   return (
     <div className="flex min-h-screen bg-gray-100/40 dark:bg-gray-800/40 text-black">
       <div className="hidden border-r lg:block dark:border-gray-800">
