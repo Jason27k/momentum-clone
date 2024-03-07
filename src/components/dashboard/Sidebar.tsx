@@ -18,7 +18,7 @@ const Sidebar = () => {
               : " "
           }`}
         >
-          <UserIcon className="h-4 w-4" />
+          <UserIcon className="h-4 w-4 hidden sm:block" />
           Account Information
         </DashboardLink>
         <DashboardLink
@@ -29,7 +29,7 @@ const Sidebar = () => {
               : " "
           }`}
         >
-          <PackageIcon className="h-4 w-4" />
+          <PackageIcon className="h-4 w-4 hidden sm:block" />
           Subscription
         </DashboardLink>
         <DashboardLink
@@ -40,7 +40,7 @@ const Sidebar = () => {
               : " "
           }`}
         >
-          <SettingsIcon className="h-4 w-4" />
+          <SettingsIcon className="h-4 w-4 hidden sm:block" />
           Settings
         </DashboardLink>
       </nav>

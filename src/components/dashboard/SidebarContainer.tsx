@@ -28,7 +28,7 @@ const SidebarContainer = async () => {
         </Link>
       </div>
       <Sidebar />
-      <div className="flex h-[60px] items-center border-t px-6">
+      <div className="hidden sm:flex h-[60px] items-center border-t px-6">
         {subscription === "Free" && (
           <Link
             href="/dashboard/subscription"
