@@ -24,28 +24,24 @@ const Topbar = ({ email, image }: TopbarProps) => {
       <Link className="lg:hidden text-2xl font-bold tracking-tighter" href="/">
         Richard
       </Link>
-      <div className="flex-1 text-sm font-medium">
+      <div className="flex-1 text-sm font-medium hidden sm:block">
         {page === undefined
           ? "Account Information"
           : page.charAt(0).toUpperCase() + page.slice(1)}
       </div>
-      <div className="flex items-center">
-        <span className="text-sm font-medium mr-2">{email}</span>
+      <div className="w-full sm:w-auto flex items-center justify-end sm:justify-normal">
+        <span className="text-sm font-medium mr-2 hidden sm:block">
+          {email}
+        </span>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="flex items-center">
-              <span className="text-sm font-medium mr-2 sm:hidden">
-                {email}
-              </span>
-
-              <Image
-                alt="Avatar"
-                className="rounded-full"
-                height="32"
-                src={image}
-                width="32"
-              />
-            </div>
+            <Image
+              alt="Avatar"
+              className="rounded-full"
+              height="32"
+              src={image}
+              width="32"
+            />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem>

@@ -7,7 +7,6 @@ import { eq } from "drizzle-orm";
 import { getSession } from "@auth0/nextjs-auth0";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import Head from "next/head";
 
 export async function saveUserInfo(user: UserProfile) {
   const cookieStore = cookies();

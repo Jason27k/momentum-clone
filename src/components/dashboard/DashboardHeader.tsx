@@ -28,7 +28,7 @@ const DashboardHeader = async ({ children }: HeaderProps) => {
 
   return (
     <div className="flex min-h-screen bg-gray-100/40 dark:bg-gray-800/40 text-black">
-      <div className="hidden border-r lg:block dark:border-gray-800">
+      <div className="border-r lg:block dark:border-gray-800">
         <SidebarContainer />
       </div>
       <div className="flex-1 flex flex-col min-h-screen">

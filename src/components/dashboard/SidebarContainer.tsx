@@ -6,12 +6,22 @@ import Sidebar from "./Sidebar";
 import { getSubscription } from "@/actions/subscription";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const SidebarContainer = async () => {
-  const subscription = getSubscription();
+  const cookieStore = cookies();
+  console.log(cookieStore.has("subscription"));
+  if (!cookieStore.has("subscription")) {
+    redirect("/api/cookies");
+  }
+  const subscription = JSON.parse(
+    cookieStore.get("subscription")?.value as string
+  );
+  console.log(subscription);
   return (
-    <div className="flex h-full max-h-screen flex-col gap-2">
-      <div className="flex h-[60px] items-center border-b px-6">
+    <div className="flex h-full max-h-screen sm:flex-col gap-2">
+      <div className="hidden sm:flex h-[60px] items-center border-b px-6">
         <Link href="/" className="flex items-center border-b px-6 text-black">
           <Package2Icon className="h-6 w-6" />
           <span>Richard</span>
