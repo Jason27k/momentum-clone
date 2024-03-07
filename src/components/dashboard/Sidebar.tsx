@@ -18,8 +18,8 @@ const Sidebar = () => {
               : " "
           }`}
         >
-          <UserIcon className="h-4 w-4 hidden sm:block" />
-          Account Information
+          <UserIcon className="h-4 w-4" />
+          <p className="hidden sm:block">Account Information</p>
         </DashboardLink>
         <DashboardLink
           href="subscription"
@@ -29,8 +29,8 @@ const Sidebar = () => {
               : " "
           }`}
         >
-          <PackageIcon className="h-4 w-4 hidden sm:block" />
-          Subscription
+          <PackageIcon className="h-4 w-4" />
+          <p className=" hidden sm:block">Subscription</p>
         </DashboardLink>
         <DashboardLink
           href="settings"
@@ -40,8 +40,8 @@ const Sidebar = () => {
               : " "
           }`}
         >
-          <SettingsIcon className="h-4 w-4 hidden sm:block" />
-          Settings
+          <SettingsIcon className="h-4 w-4" />
+          <p className="hidden sm:block">Settings</p>
         </DashboardLink>
       </nav>
     </div>
