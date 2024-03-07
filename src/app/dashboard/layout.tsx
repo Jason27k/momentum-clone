@@ -2,6 +2,7 @@
 
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 export default async function Layout({
   children,
@@ -10,7 +11,11 @@ export default async function Layout({
 }>) {
   return (
     <>
-      <DashboardHeader>{children}</DashboardHeader>;
+      <DashboardHeader>
+        {children}
+        <Analytics />
+      </DashboardHeader>
+      ;
     </>
   );
 }
