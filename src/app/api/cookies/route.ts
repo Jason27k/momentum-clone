@@ -5,7 +5,7 @@ import { createSubscription } from "@/actions/subscription";
 import { redirect } from "next/navigation";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export async function cookieSetup() {
+async function cookieSetup() {
   const cookieStore = cookies();
   const user = JSON.parse(cookieStore.get("user")?.value as string);
   let userId = null;

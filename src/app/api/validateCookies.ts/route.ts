@@ -4,7 +4,7 @@ import { saveUserInfo } from "@/actions/user";
 import { createSubscription } from "@/actions/subscription";
 import { redirect } from "next/navigation";
 
-export async function validateCookies() {
+async function validateCookies() {
   const cookieStore = cookies();
   const session = await getSession();
   if (!session) {
